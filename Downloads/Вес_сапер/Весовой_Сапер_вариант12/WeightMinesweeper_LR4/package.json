@@ -1,0 +1,9 @@
+{
+  "name": "weight-minesweeper-lr4",
+  "version": "1.0.0",
+  "description": "ЛР 4 — математическое ядро игры «Весовой Сапёр», вариант 12",
+  "type": "module",
+  "scripts": {
+    "test": "node selftest.js"
+  }
+}

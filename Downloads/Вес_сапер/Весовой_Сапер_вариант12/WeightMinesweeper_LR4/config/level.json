@@ -1,0 +1,8 @@
+{
+  "rows": 8,
+  "cols": 8,
+  "lightMines": 8,
+  "heavyMines": 4,
+  "startRow": 0,
+  "startCol": 0
+}

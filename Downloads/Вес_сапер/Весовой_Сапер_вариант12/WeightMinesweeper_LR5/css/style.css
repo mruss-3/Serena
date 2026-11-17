@@ -1,0 +1,323 @@
+/* ============================================
+   РОЗОВАЯ ТЕМА «ОТ РУКИ»
+   Градиент + ваш PNG-котик + зерно + неровности
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #fff5f8;
+  color: #4a3540;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background-image:
+    url("киса.png"),   /* 1 — левый верх */
+    url("киса.png"),   /* 2 — центр-верх */
+    url("киса.png"),   /* 3 — правый верх */
+    url("киса.png"),   /* 4 — левый центр */
+    url("киса.png"),   /* 5 — центр */
+    url("киса.png"),   /* 6 — правый центр */
+    url("киса.png"),   /* 7 — левый низ */
+    url("киса.png"),   /* 8 — центр-низ */
+    url("киса.png"),   /* 9 — правый низ */
+    linear-gradient(160deg, #fff5f8 0%, #ffe4ee 40%, #f9c6d9 75%, #f3a6c0 100%);
+
+  background-repeat:
+    no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat,
+    no-repeat;
+
+  /* Размеры разные — «разброс» без ощущения сетки */
+  background-size:
+    220px 220px,   /* 1 крупный */
+    140px 140px,   /* 2 мелкий */
+    180px 180px,   /* 3 средний */
+    120px 120px,   /* 4 мелкий */
+    240px 240px,   /* 5 крупный */
+    150px 150px,   /* 6 средний */
+    190px 190px,   /* 7 средний */
+    130px 130px,   /* 8 мелкий */
+    210px 210px,   /* 9 крупный */
+    cover;
+
+  /* Позиции — покрывают все зоны: 3×3, но со сдвигами */
+  background-position:
+    left 2%   top 4%,      /* 1 */
+    left 34%  top 10%,     /* 2 */
+    right 4%  top 6%,      /* 3 */
+    left 8%   top 42%,     /* 4 */
+    center    center,      /* 5 */
+    right 6%  top 40%,     /* 6 */
+    left 6%   bottom 4%,   /* 7 */
+    left 40%  bottom 10%,  /* 8 */
+    right 4%  bottom 6%,   /* 9 */
+    center;
+
+  background-attachment:
+    fixed, fixed, fixed,
+    fixed, fixed, fixed,
+    fixed, fixed, fixed,
+    fixed;
+}
+
+/* Зерно поверх всего — «бумажная» текстура, признак ручной работы */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Контент выше зерна */
+.app {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, 96vw);
+  margin: auto;
+  padding: 28px 0;
+}
+
+/* ===== ШАПКА ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  color: #e58aa8;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.76rem;
+  font-weight: bold;
+}
+
+h1 {
+  margin: 0;
+  /* Рукописный шрифт — см. подключение ниже */
+  font-family: "Caveat", "Segoe UI", cursive;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: #7a4a5e;
+  /* Тень слегка смещена — как от руки */
+  text-shadow: 1px 2px 0 rgba(214, 31, 92, 0.08);
+}
+
+.subtitle {
+  color: #a87d8e;
+}
+
+.status {
+  padding: 10px 15px;
+  border: 1px solid #f3b8cb;
+  color: #b85e7f;
+  background: #ffeaf1;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-weight: bold;
+  /* Живой сдвиг и поворот */
+  transform: translateY(2px) rotate(-1deg);
+  box-shadow: 1px 2px 0 rgba(214, 31, 92, 0.10);
+}
+
+/* ===== СЕТКА ===== */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+  gap: 20px;
+}
+
+/* ===== КАРТОЧКИ — неровные углы, двойные тени ===== */
+.game-panel,
+.card {
+  background: rgba(255, 250, 252, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid #f6d3de;
+  /* Разные углы — «нарисовано от руки» */
+  border-radius: 18px 14px 20px 15px / 15px 20px 14px 18px;
+  padding: 16px;
+  /* Двойная тень с разными смещениями */
+  box-shadow:
+    2px 4px 0 rgba(214, 31, 92, 0.06),
+    -1px 8px 20px rgba(122, 74, 94, 0.10);
+}
+
+/* Лёгкие повороты — каждая карточка чуть по-своему */
+aside .card:nth-child(1) { transform: rotate(-0.4deg); }
+aside .card:nth-child(2) { transform: rotate(0.3deg); }
+aside .card:nth-child(3) { transform: rotate(-0.2deg); }
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  margin: auto;
+  background: #fff0f5;
+  border-radius: 9px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: #a87d8e;
+  font-size: 0.85rem;
+  padding: 14px 3px 0;
+}
+
+aside {
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  padding: 17px;
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 1.08rem;
+  color: #7a4a5e;
+}
+
+/* ===== СТАТИСТИКА ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.stats div {
+  padding: 10px;
+  border-radius: 11px 8px 12px 9px;
+  background: #fff0f5;
+  color: #a87d8e;
+  font-size: 0.8rem;
+}
+
+.stats strong {
+  display: block;
+  color: #7a4a5e;
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+#hud-message {
+  color: #a87d8e;
+  line-height: 1.45;
+  min-height: 42px;
+  margin: 14px 0 0;
+}
+
+.card p {
+  color: #a87d8e;
+  margin: 9px 0;
+  font-size: 0.9rem;
+}
+
+/* ===== КЛАВИШИ / КОД ===== */
+kbd,
+code {
+  background: #ffeaf1;
+  border: 1px solid #f3b8cb;
+  border-radius: 6px 4px 7px 5px;
+  padding: 3px 7px;
+  color: #b85e7f;
+}
+
+/* ===== КНОПКИ — «живые», с неровным радиусом ===== */
+button {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  color: #fff;
+  background: #f3a6c0;
+  border: 1px solid #ec8fb0;
+  border-radius: 10px 8px 12px 9px;
+  font-weight: 650;
+  cursor: pointer;
+  /* Лёгкий поворот + смещённая тень */
+  transform: rotate(-0.3deg);
+  box-shadow: 1px 2px 0 rgba(214, 31, 92, 0.15);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+button:hover {
+  background: #ec8fb0;
+  /* Выпрямляется и приподнимается — «оживает» */
+  transform: rotate(0deg) translateY(-1px);
+}
+
+.hint {
+  font-size: 0.78rem !important;
+  color: #a87d8e !important;
+  overflow-wrap: anywhere;
+}
+
+/* ===== ПОДВАЛ — рукописная подпись ===== */
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: #b88a9c;
+  font-size: 0.78rem;
+  padding: 16px 3px 0;
+}
+
+footer .signature {
+  font-family: "Caveat", cursive;
+  font-size: 1rem;
+  color: #b85e7f;
+  transform: rotate(-1deg);
+}
+
+/* ===== ДЕКОР: ваш котик, выглядывающий из-за карточки ===== */
+.peek-cat {
+  position: absolute;
+  right: -18px;
+  bottom: -22px;
+  width: 70px;
+  height: 70px;
+  transform: rotate(8deg);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 850px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  /* На мобильных убираем повороты — чтобы не «ломались» */
+  aside .card:nth-child(1),
+  aside .card:nth-child(2),
+  aside .card:nth-child(3),
+  .status,
+  button {
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  header,
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

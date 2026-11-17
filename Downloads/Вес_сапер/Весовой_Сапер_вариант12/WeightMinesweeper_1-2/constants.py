@@ -1,0 +1,18 @@
+"""константы интерфейса и механики"""
+WINDOW_WIDTH = 900
+WINDOW_HEIGHT = 720
+FPS = 60
+ROWS = 12
+COLS = 12
+CELL_SIZE = 48
+GRID_X = 28
+GRID_Y = 100
+MINE_COUNT = 22
+HIDDEN = (62, 78, 94)
+OPEN = (205, 215, 220)
+GRID = (25, 35, 45)
+PLAYER = (50, 180, 255)
+FLAG = (255, 185, 55)
+TEXT = (240, 245, 250)
+BG = (17, 25, 35)
+ACCENT = (65, 210, 155)
